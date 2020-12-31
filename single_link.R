@@ -1,12 +1,3 @@
-
-#making a small dataset
-#dataset has three distinct clusters
-x <- c(runif(5, min=0, max=2), runif(5, min=6, max=7), runif(5, min=2, max=5))
-y <- c(runif(5, min=7, max=10), runif(5, min=-1, max=3), runif(5, min=-5, max=-3))
-df <- data.frame(x,y)
-df$class <- NA
-
-
 #performs single link hierarchical clustering and plots the clusters
 #works for 2D datasets
 #df is the dataframe and NUM the number of clusters
@@ -107,3 +98,14 @@ single_link <- function(df, NUM){
   ggplot(df) + 
     geom_point(aes(x,y, color=class))
 }
+
+#making a small dataset
+#dataset has three distinct clusters
+x <- c(runif(5, min=0, max=2), runif(5, min=6, max=7), runif(5, min=2, max=5))
+y <- c(runif(5, min=7, max=10), runif(5, min=-1, max=3), runif(5, min=-5, max=-3))
+df <- data.frame(x,y)
+df$class <- NA
+
+
+#RUN FUNTION
+single_link(df, 3)
