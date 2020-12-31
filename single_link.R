@@ -21,7 +21,6 @@ single_link <- function(df, NUM){
   done <- FALSE
   
   #repeat until we have the wanted number of clusters
-  #(or run out of calculations?)
   while(done == FALSE){
     
     #if wanted clusters equal the number of points, exit with one point per cluster
@@ -77,7 +76,7 @@ single_link <- function(df, NUM){
     
     #if distance matrix runs out of numbers, exit
     if(all(is.infinite(distance)) == TRUE){
-      print("no dist")
+      print("no distances left")
     }
   }
   
