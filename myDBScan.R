@@ -1,6 +1,7 @@
 #DBScan algorithm 
 
 ?iris
+#relevant to single link algorithm, i will change it after :)
 data<-iris[-5]
 data<-data[-4]
 data<-data[-1]
