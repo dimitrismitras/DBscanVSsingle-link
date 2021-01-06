@@ -99,7 +99,14 @@ for(i in 1:length(cluster)){
   }
 }
 
-#neighborhood<- neighborhood[!is.na(neighborhood)]
+
  
 
 #plot
+plot(data)
+points(data[neighborhood[,1],] , col="purple")
+points(data[neighborhood[,2],], col="red")
+
+#if its not clear the isVoice points
+lines(data[neighborhood[,1],] , col="purple")
+lines(data[neighborhood[,2],], col="red")
