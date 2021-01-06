@@ -13,7 +13,7 @@ eps<-0.7
 minpts<-10 #2.*length(iris)
 
 #function DBscan
-clusters_function<-function(data , eps , minpts){
+###############clusters_function<-function(data , eps , minpts){###############
   
 
   length<-as.numeric(lengths(data[1],use.names = TRUE)) #total length of the points
@@ -76,7 +76,7 @@ clusters_function<-function(data , eps , minpts){
       }
  }# end of if(isNoise==FALSE) statement
   }#end of for(i in 1:(length-1)) loop
-  }#end of function
+ ################ }#end of function####################
      
   
 
