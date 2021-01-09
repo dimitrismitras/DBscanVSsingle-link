@@ -2,6 +2,8 @@
 #works for 2D datasets
 #df is the dataframe and NUM the number of clusters
 
+library(ggplot2)
+
 single_link <- function(df, NUM, real_class){
   
   #calulating all distances
