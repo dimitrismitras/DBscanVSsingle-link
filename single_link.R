@@ -2,7 +2,7 @@
 #works for 2D datasets
 #df is the dataframe and NUM the number of clusters
 
-single_link <- function(df, NUM){
+single_link <- function(df, NUM, real_class){
   
   #calulating all distances
   distance <- as.matrix(dist(df))
@@ -21,6 +21,7 @@ single_link <- function(df, NUM){
   done <- FALSE
   
   #repeat until we have the wanted number of clusters
+  #(or run out of calculations?)
   while(done == FALSE){
     
     #if wanted clusters equal the number of points, exit with one point per cluster
@@ -76,7 +77,7 @@ single_link <- function(df, NUM){
     
     #if distance matrix runs out of numbers, exit
     if(all(is.infinite(distance)) == TRUE){
-      print("no distances left")
+      print("no dist")
     }
   }
   
@@ -94,17 +95,22 @@ single_link <- function(df, NUM){
   
   
   #plot the scatterplot
+  #plot(1:5,seq(1,10,length=5),type="n",xlab="",ylab="",main="Test draw.circle")
+  
   ggplot(df) + 
-    geom_point(aes(x,y, color=class))
+    geom_point(aes(x=df[,1],y=df[,2], color=class, shape=real_class))
+  
 }
+
 
 #making a small dataset
 #dataset has three distinct clusters
-x <- c(runif(5, min=0, max=2), runif(5, min=6, max=7), runif(5, min=2, max=5))
-y <- c(runif(5, min=7, max=10), runif(5, min=-1, max=3), runif(5, min=-5, max=-3))
-df <- data.frame(x,y)
-df$class <- NA
+x <- c(runif(15, min=0, max=2), runif(5, min=5, max=7), runif(5, min=2, max=5))
+y <- c(runif(15, min=9, max=10), runif(5, min=-1, max=3), runif(5, min=-5, max=-3))
+data <- data.frame(x,y)
+new_df$class <- NA
+real_class <- c(rep('a',15), rep('b',5), rep('c',5))
 
 
 #RUN FUNTION
-single_link(df, 3)
+single_link(data,3, real_class)
