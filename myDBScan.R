@@ -1,4 +1,3 @@
-#Dimitrios Mitras 3084
 #DBScan algorithm 
 
  
