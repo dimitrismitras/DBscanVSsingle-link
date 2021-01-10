@@ -110,5 +110,5 @@ sl_data <- read.csv(file = 'single_link_better.csv')
 dbs_data <- read.csv(file= 'dbscan_better.csv')
 
 #running the algorithms
-single_link(sl_data[-1], 3)
-single_link(dbs_data[-1], 3)
+single_link(sl_data[-1], 3) #best for single link
+single_link(dbs_data[-1], 3) #best for dbscan
