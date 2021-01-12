@@ -1,3 +1,7 @@
+#authors: 
+#Vasiliki Marina Kipourou, AEM: 2754
+#Dimitrios Mitras, AEM: 3084
+
 library(tidyverse)
 
 #loading the data
