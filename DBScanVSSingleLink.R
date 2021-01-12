@@ -2,7 +2,7 @@
 #Vasiliki Marina Kipourou, AEM: 2754
 #Dimitrios Mitras, AEM: 3084
 
-library(tidyverse)
+library(ggforce)
 
 #loading the data
 sl_data <- read.csv(file = 'single_link_better.csv')
@@ -13,7 +13,7 @@ dbs_data <- dbs_data[-1]
 #running the functions
 
 #where DBScan is better 
-single_link(dbs_data, 4)
+single_link(dbs_data, 3)
 DBSCAN(dbs_data , eps=1, minpts=5)
 
 #where Single Link is better
@@ -159,6 +159,7 @@ DBSCAN<-function(data , eps , minpts){
   nofclusters <- 0
   distance <- as.matrix(dist(data)) #array[length,length]
   
+  centers <- rep(NA, length)
   
   #put noises away
   for (i in 1:(length -1) ){  
@@ -169,14 +170,19 @@ DBSCAN<-function(data , eps , minpts){
           itspnts=itspnts + 1
         }
       }
-      if(itspnts>minpts)
-        break;
+      if(itspnts>minpts){
+        break;}
     }
     
     if (itspnts<minpts)
-      isNoise[i]=TRUE  
+      isNoise[i]=TRUE 
+    
+    if(itspnts>minpts)
+      centers[i] <- i
     
   }
+  
+  centers <- centers[!is.na(centers)]
   
   #for every point
   for (i in 1:(length-1)){
@@ -256,8 +262,11 @@ DBSCAN<-function(data , eps , minpts){
     plot_data$class[neighborhoods[, x]] <- as.character(x)
   }
   
-  ggplot(plot_data) + 
-    geom_point(aes(x=data[,1],y=data[,2], color=class, shape=real_class))
+  centers <- data.frame(data[centers,1], data[centers,2] )
+  
+  ggplot() + 
+    geom_point(aes(x=data[,1],y=data[,2], color=class, shape=real_class), data = plot_data) #+
+    #geom_circle(aes( x0 = centers[,1], y0=centers[,2], r=eps), alpha=0.5, data=centers) #drawing the circles around the central points with radious Eps
   
 } #end of function
 
